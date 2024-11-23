@@ -13,8 +13,11 @@ public class Network {
         layers.add(inputLayer);
 
         for (int i = 1; i < layerSizes.length - 1; i++) {
-            Layer hiddenLayer = new Layer(this.layerSizes[i], this.layerSizes[i - 1], false, false);
+            Layer hiddenLayer = new Layer(layerSizes[i], layerSizes[i - 1], false, false);
             layers.add(hiddenLayer);
         }
+
+        Layer outputLayer = new Layer(layerSizes[layerSizes.length], layerSizes[layerSizes.length - 1], false, true);
+        layers.add(outputLayer);
     }
 }

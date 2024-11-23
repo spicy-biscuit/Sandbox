@@ -73,4 +73,8 @@ public class Layer {
     public void setPreviousLayer(Layer layer) {
         previousLayer = layer;
     }
+
+    public ArrayList<Double> getOutput() {
+        return values;
+    }
 }
