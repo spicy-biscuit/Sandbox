@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class ArrayFunctions {
+
+    //componentwise combining arrays
     public static ArrayList<Double> componentMultiply(ArrayList<Double> array1, ArrayList<Double> array2) {
         ArrayList<Double> output = new ArrayList<>();
 
@@ -31,22 +33,26 @@ public class ArrayFunctions {
         return output;
     }
 
+    //Array multiplication by a vector
     public static ArrayList<Double> arrayMultiplication(ArrayList<ArrayList<Double>> array, ArrayList<Double> vector) {
         ArrayList<Double> output = new ArrayList<>();
 
         int size = vector.size();
+        int arrayHeight = array.size();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < arrayHeight; i++) {
             Double thisValue = 0.0;
-            for (int j = 0; i < size; j++) {
-                thisValue += array.get(i).get(j);
+            ArrayList<Double> thisArray = array.get(i);
+            for (int j = 0; j < size; j++) {
+                thisValue += thisArray.get(j) * vector.get(j);
             }
-            thisValue *= vector.get(i);
             output.add(thisValue);
         }
         return(output);
     }
 
+    //Transpose a 2d array
+    //NOT FUNCTIONING, RECODE TO SOLVE W/ MEMORY ALLOCATION
     public static ArrayList<ArrayList<Double>> transpose(ArrayList<ArrayList<Double>> array) {
         int rows = array.size();
         int columns = array.get(0).size();
@@ -66,5 +72,17 @@ public class ArrayFunctions {
         }
 
         return array;
+    }
+
+    //sigmoid
+    private static Double sigmoid(Double input) {
+        return 1 / (1 + Math.exp(-input));
+    }
+
+    public static ArrayList<Double> sigmoid(ArrayList<Double> values) {
+        for (int i = 0; i < values.size(); i++) {
+            values.set(i, sigmoid(values.get(i)));
+        }
+        return values;
     }
 }
